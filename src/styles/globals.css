@@ -1,14 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
 :root {
-  --max-width: 1100px;
-  --border-radius: 12px;
+  --transition: all 0.4s ease-in-out;
 
-  --background-start-rgb: 135,
-    112,
-    251;
-  --background-end-rgb: 109, 27, 107;
-  --foreground-rgb: 228, 228, 228;
+  --bg-start: rgb(72, 114, 250);
+  --bg-end: rgb(148, 72, 250);
+  --white: rgb(228, 228, 228);
+  --accent: rgb(243, 83, 232);
 }
 
 * {
@@ -25,13 +23,13 @@ body {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  color: var(--white);
   background: linear-gradient(
       to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
+      var(--bg-end)
     )
-    rgb(var(--background-start-rgb));
+    var(--bg-start);
 }
 
 a {
@@ -39,16 +37,49 @@ a {
   text-decoration: none;
 }
 
-.new-button {
+.button {
+  text-align: center;
   display: inline-block;
-  padding: 8px 12px;
+  padding: 15px 20px;
   cursor: pointer;
-  border-radius: 8px;
-  background-color: #9c27b0;
-  font-size: 16px;
-  color: inherit;
+  border-radius: 12px;
+  border: transparent 2px solid;
+  color: var(--white);
+  background-color: var(--accent);
+  font-size: 2rem;
+  transition: var(--transition);
+}
+
+.button:hover,
+.button:focus {
+  background-color: transparent;
+  border: var(--accent) 2px solid;
+  color: var(--accent);
 }
 
 input[type="file"] {
   display: none;
+}
+
+.thumbnail {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.images-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.image-card{
+  display: flex;
+  width: 300px;
+  height: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
 }
