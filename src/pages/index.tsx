@@ -1,30 +1,15 @@
 import Head from 'next/head';
-import styles from '@/styles/Home.module.css';
-import { useState } from 'react';
+import React from 'react';
+import useFileReader from '../hooks/useFileReader';
 import Image from 'next/image';
 
 export default function Home() {
-  const [selectedFiles, setSelectedFiles] = useState<
-    { fileName: string; dataUri: string }[]
-  >([]);
+  const { files, handleFileChange } = useFileReader();
+  const imageWidth = 75;
 
-  const fileSelectedHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) {
-      const files: any[] = [];
-      for (let i = 0; i < event.target.files.length; i++) {
-        const file = event.target.files[i];
-        const reader = new FileReader();
-        reader.onload = () => {
-          if (reader.result) {
-            files.push({
-              fileName: file.name,
-              dataUri: reader.result
-            });
-          }
-        };
-        reader.readAsDataURL(file);
-        setSelectedFiles(files);
-      }
+  const handleCopyClick = (str: string) => {
+    if (str) {
+      navigator.clipboard.writeText(str);
     }
   };
 
@@ -41,7 +26,7 @@ export default function Home() {
           href='/favicon.ico'
         />
       </Head>
-      <main className={styles.main}>
+      <main>
         <div>
           <label
             className='button'
@@ -53,22 +38,32 @@ export default function Home() {
             id='convert'
             type='file'
             multiple
-            onChange={fileSelectedHandler}
+            hidden
+            onChange={handleFileChange}
           />
         </div>
-        <div className='image-wrapper'>
-          {selectedFiles.length > 0 &&
-            selectedFiles.map(file => (
-              <div
-                key={`${file.fileName}-${Date.now()}`}
-                className=''
-              >
+        <div>
+          {files.length > 0 &&
+            files.map(file => (
+              <div key={file.fileName}>
                 <h3>{file.fileName}</h3>
-                <img
+                <Image
                   src={file.dataUri}
                   alt={file.fileName}
-                  className='thumbnail'
+                  unoptimized
+                  width={imageWidth}
+                  height={(file.height / file.width) * imageWidth}
                 />
+                <pre>
+                  <code>{file.dataUri.substring(0, 50)}...</code>
+                </pre>
+                <button
+                  onClick={() => {
+                    handleCopyClick(file.dataUri);
+                  }}
+                >
+                  copy
+                </button>
               </div>
             ))}
         </div>
