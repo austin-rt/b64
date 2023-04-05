@@ -1,7 +1,8 @@
-import Head from 'next/head';
 import React from 'react';
-import useFileReader from '../hooks/useFileReader';
+import Head from 'next/head';
 import Image from 'next/image';
+import useFileReader from '../hooks/useFileReader';
+import Nav from '../components/Nav';
 
 export default function Home() {
   const { files, handleFileChange } = useFileReader();
@@ -26,6 +27,7 @@ export default function Home() {
           href='/favicon.ico'
         />
       </Head>
+      <Nav />
       <main>
         <div>
           <label
