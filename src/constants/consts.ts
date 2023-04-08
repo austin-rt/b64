@@ -5,6 +5,9 @@ export const BASE_URL = {
 
 export const API_ENDPOINTS = {
   AUTH: {
-    GOOGLE: 'auth/google'
+    GOOGLE: {
+      LOGIN: 'auth/google',
+      LOGOUT: 'auth/logout'
+    }
   }
 };
