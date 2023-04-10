@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import useFileReader from '../hooks/useFileReader';
 import Nav from '../components/Nav';
+import axios from 'axios';
+import { API_ENDPOINTS, BASE_URL } from '@/constants/consts';
+import { IUserDocument } from '@/types/interfaces';
 
 export default function Home() {
+  const [user, setUser] = useState();
   const { files, handleFileChange } = useFileReader();
   const imageWidth = 75;
 
@@ -13,6 +17,30 @@ export default function Home() {
       navigator.clipboard.writeText(str);
     }
   };
+
+  const getUser = async () => {
+    try {
+      const { data } = await axios.get(
+        `${BASE_URL.API}/${API_ENDPOINTS.AUTH.LOGIN.SUCCESS}`,
+        {
+          withCredentials: true
+        }
+      );
+      if (data.user) {
+        setUser(data.user);
+      }
+    } catch (err: any) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   return (
     <>

@@ -25,3 +25,19 @@ export interface FileReaderResult {
   width: number;
   height: number;
 }
+export interface IDataURI {
+  dataURI: string;
+}
+
+export interface IDataURIDocument extends IDataURI {
+  _id: string
+}
+
+export interface IUserDocument {
+  _id: string;
+  name: string;
+  googleId: string;
+  email: string;
+  avatar: string;
+  images?: IDataURIDocument[];
+}
