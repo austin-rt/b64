@@ -13,7 +13,6 @@ export default function Home() {
   const { getUser, loading, error } = useAuth();
   const imageWidth = 75;
   const user = useAppSelector(state => state.UserSlice.user);
-  console.log(user);
 
   useEffect(() => {
     getUser();
