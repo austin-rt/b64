@@ -26,15 +26,15 @@ export default function Home() {
   };
 
   const handleSaveToProfile = (file: any) => {
-    if (file){
-      console.log(file)
+    if (file) {
+      console.log(file);
       // axios.put(`${BASE_URL.API}/${API_ENDPOINTS.USERS}/${user._id}`, file)
     }
-  }
+  };
 
   const handleSaveAllToProfile = () => {
-    if (files){
-      console.log(files)
+    if (files) {
+      console.log(files);
       // axios.put(`${BASE_URL.API}/${API_ENDPOINTS.USERS}/${user._id}`, files)
     }
   };
@@ -55,11 +55,14 @@ export default function Home() {
       <Nav />
       <main>
         <div>
-          <button onClick={handleSaveAllToProfile}>Add all to Profile</button>
           <label
             className='button'
             htmlFor='convert'
-            style={{ cursor: 'pointer' }}
+            style={{
+              cursor: 'pointer',
+              border: '1px solid black',
+              padding: '.5rem 1rem'
+            }}
           >
             Convert Files
           </label>
@@ -70,6 +73,9 @@ export default function Home() {
             hidden
             onChange={handleFileChange}
           />
+        </div>
+        <div style={{ marginTop: '1rem' }}>
+          <button onClick={handleSaveAllToProfile}>Add all to Profile</button>
         </div>
         <div>
           {files.length > 0 &&
