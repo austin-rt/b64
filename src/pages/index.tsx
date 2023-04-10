@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import useFileReader from '../hooks/useFileReader';
 import Nav from '../components/Nav';
-import axios from 'axios';
-import { API_ENDPOINTS, BASE_URL } from '@/constants/consts';
-import { IUserDocument } from '@/types/interfaces';
+import { useAppSelector } from '@/redux/store';
+import useAuth from '@/hooks/useAuth';
 
 export default function Home() {
-  const [user, setUser] = useState();
   const { files, handleFileChange } = useFileReader();
+  const { getUser, loading, error } = useAuth();
   const imageWidth = 75;
+  const user = useAppSelector(state => state.UserSlice.user);
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
   const handleCopyClick = (str: string) => {
     if (str) {
