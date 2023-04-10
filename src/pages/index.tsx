@@ -33,8 +33,8 @@ export default function Home() {
 
   const handleSaveAllToProfile = () => {
     if (files) {
-      console.log(files);
-      // axios.put(`${BASE_URL.API}/${API_ENDPOINTS.USERS}/${user._id}`, files)
+      // console.log(files);
+      axios.put(`${BASE_URL.API}/${API_ENDPOINTS.USERS}/${user._id}`, files)
     }
   };
 
@@ -82,25 +82,25 @@ export default function Home() {
               <div key={file.fileName}>
                 <h3>{file.fileName}</h3>
                 <Image
-                  src={file.dataUri}
+                  src={file.dataURI}
                   alt={file.fileName}
                   unoptimized
                   width={imageWidth}
                   height={(file.height / file.width) * imageWidth}
                 />
                 <pre>
-                  <code>{file.dataUri.substring(0, 50)}...</code>
+                  <code>{file.dataURI.substring(0, 50)}...</code>
                 </pre>
                 <button
                   onClick={() => {
-                    handleCopyClick(file.dataUri);
+                    handleCopyClick(file.dataURI);
                   }}
                 >
                   copy
                 </button>
                 <button
                   onClick={() => {
-                    handleSaveToProfile(file.dataUri);
+                    handleSaveToProfile(file.dataURI);
                   }}
                 >
                   save to profile

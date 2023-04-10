@@ -19,7 +19,7 @@ const useFileReader = (): UseFileReaderReturn => {
 
       // When the file is read, resolve with an object that contains the data URI and the file object
       reader.onload = () => {
-        resolve({ dataUri: reader.result as string, file });
+        resolve({ dataURI: reader.result as string, file });
       };
 
       // If there is an error while reading the file, reject with an error message
@@ -35,11 +35,11 @@ const useFileReader = (): UseFileReaderReturn => {
   const addWidthAndHeight = async (
     fileData: FileReaderResult
   ): Promise<FileDataWithSize> => {
-    const { dataUri, file } = fileData;
+    const { dataURI, file } = fileData;
 
     // Create a new image object and set its source to the data URI of the file
     const img = new Image();
-    img.src = dataUri;
+    img.src = dataURI;
 
     // Wait for the image to load and then resolve with an object that contains the width and height of the image
     const { width, height } = await new Promise<AddWidthAndHeightResult>(
@@ -51,7 +51,7 @@ const useFileReader = (): UseFileReaderReturn => {
     );
 
     // Return an object that contains the name, data URI, width, and height of the file
-    return { fileName: file.name, dataUri, width, height };
+    return { fileName: file.name, dataURI, width, height };
   };
 
   // Define a function called handleFileChange that takes a file input change event and returns a Promise that resolves to void

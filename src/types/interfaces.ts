@@ -1,6 +1,6 @@
 export interface FileData {
   fileName: string;
-  dataUri: string;
+  dataURI: string;
 }
 
 export interface FileDataWithSize extends FileData {
@@ -16,7 +16,7 @@ export interface UseFileReaderReturn {
 }
 
 export interface FileReaderResult {
-  dataUri: string;
+  dataURI: string;
   file: File;
 }
 
@@ -34,11 +34,11 @@ export interface IDataURIDocument extends IDataURI {
 }
 
 export interface IUser {
- name: string;
- googleId: string;
- email: string;
- avatar: string;
- images: IDataURI[];
+  name: string;
+  googleId: string;
+  email: string;
+  avatar: string;
+  images: IDataURI[];
 }
 
 export interface IUserDocument extends IUser {
