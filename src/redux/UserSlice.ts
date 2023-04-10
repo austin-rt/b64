@@ -1,18 +1,31 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { IUserDocument } from '../types/interfaces';
+
+const initialUser: IUserDocument = {
+  _id: '',
+  name: '',
+  googleId: '',
+  email: '',
+  avatar: '',
+  images: []
+};
 
 export const UserSlice = createSlice({
   name: 'user',
-  initialState: null,
+  initialState: {
+    user: initialUser
+  },
   reducers: {
-    setAuthenticatedUser: (state: { name: any; user: any }, action: {payload: any, type: string}) => {
+    setAuthenticatedUser: (
+      state,
+      action: PayloadAction<{ user: IUserDocument }>
+    ) => {
       if (state) {
-        state.name = action.payload.name;
         state.user = action.payload.user;
       }
     },
-    clearUserInfo: (state: { name: any; user: any }, action: {payload: any, type: string}) => {
-      state.name = null;
-      state.user = null;
+    clearUserInfo: state => {
+      state.user = initialUser;
     }
   }
 });
