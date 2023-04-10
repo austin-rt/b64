@@ -45,6 +45,7 @@ export default function Home() {
           <label
             className='button'
             htmlFor='convert'
+            style={{ cursor: 'pointer' }}
           >
             Convert Files
           </label>
