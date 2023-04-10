@@ -15,13 +15,12 @@ export interface UseFileReaderReturn {
   ) => Promise<void>;
 }
 
-
 export interface FileReaderResult {
   dataUri: string;
   file: File;
 }
 
- export interface AddWidthAndHeightResult {
+export interface AddWidthAndHeightResult {
   width: number;
   height: number;
 }
@@ -30,7 +29,7 @@ export interface IDataURI {
 }
 
 export interface IDataURIDocument extends IDataURI {
-  _id: string
+  _id: string;
 }
 
 export interface IUserDocument {
@@ -40,4 +39,9 @@ export interface IUserDocument {
   email: string;
   avatar: string;
   images?: IDataURIDocument[];
+  __v?: number;
+}
+
+export interface IUserData {
+  user: IUserDocument;
 }
