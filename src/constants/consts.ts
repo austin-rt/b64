@@ -8,6 +8,10 @@ export const API_ENDPOINTS = {
     GOOGLE: {
       LOGIN: 'auth/google',
       LOGOUT: 'auth/logout'
+    },
+    LOGIN: {
+      SUCCESS: 'auth/login/success',
+      FAILED: 'auth/login/failed'
     }
   }
 };
