@@ -22,29 +22,9 @@ export default function Home() {
     }
   };
 
-  const getUser = async () => {
-    try {
-      const { data } = await axios.get(
-        `${BASE_URL.API}/${API_ENDPOINTS.AUTH.LOGIN.SUCCESS}`,
-        {
-          withCredentials: true
-        }
-      );
-      if (data.user) {
-        setUser(data.user);
-      }
-    } catch (err: any) {
-      console.error(err);
-    }
+  const handleSaveToProfile = (str: string) => {
+    if (str) console.log(str);
   };
-
-  useEffect(() => {
-    getUser();
-  }, []);
-
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
 
   return (
     <>
@@ -97,6 +77,13 @@ export default function Home() {
                   }}
                 >
                   copy
+                </button>
+                <button
+                  onClick={() => {
+                    handleSaveToProfile(file.dataUri);
+                  }}
+                >
+                  save to profile
                 </button>
               </div>
             ))}
