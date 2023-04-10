@@ -5,12 +5,15 @@ import useFileReader from '../hooks/useFileReader';
 import Nav from '../components/Nav';
 import { useAppSelector } from '@/redux/store';
 import useAuth from '@/hooks/useAuth';
+import { API_ENDPOINTS, BASE_URL } from '@/constants/consts';
+import axios from 'axios';
 
 export default function Home() {
   const { files, handleFileChange } = useFileReader();
   const { getUser, loading, error } = useAuth();
   const imageWidth = 75;
   const user = useAppSelector(state => state.UserSlice.user);
+  console.log(user);
 
   useEffect(() => {
     getUser();
@@ -22,8 +25,18 @@ export default function Home() {
     }
   };
 
-  const handleSaveToProfile = (str: string) => {
-    if (str) console.log(str);
+  const handleSaveToProfile = (file: any) => {
+    if (file){
+      console.log(file)
+      // axios.put(`${BASE_URL.API}/${API_ENDPOINTS.USERS}/${user._id}`, file)
+    }
+  }
+
+  const handleSaveAllToProfile = () => {
+    if (files){
+      console.log(files)
+      // axios.put(`${BASE_URL.API}/${API_ENDPOINTS.USERS}/${user._id}`, files)
+    }
   };
 
   return (
@@ -42,6 +55,7 @@ export default function Home() {
       <Nav />
       <main>
         <div>
+          <button onClick={handleSaveAllToProfile}>Add all to Profile</button>
           <label
             className='button'
             htmlFor='convert'
