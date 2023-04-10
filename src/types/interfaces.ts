@@ -25,6 +25,7 @@ export interface AddWidthAndHeightResult {
   height: number;
 }
 export interface IDataURI {
+  fileName: string;
   dataURI: string;
 }
 
@@ -32,14 +33,16 @@ export interface IDataURIDocument extends IDataURI {
   _id: string;
 }
 
-export interface IUserDocument {
+export interface IUser {
+ name: string;
+ googleId: string;
+ email: string;
+ avatar: string;
+ images: IDataURI[];
+}
+
+export interface IUserDocument extends IUser {
   _id: string;
-  name: string;
-  googleId: string;
-  email: string;
-  avatar: string;
-  images?: IDataURIDocument[];
-  __v?: number;
 }
 
 export interface IUserData {
