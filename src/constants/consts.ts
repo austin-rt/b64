@@ -4,6 +4,7 @@ export const BASE_URL = {
 };
 
 export const API_ENDPOINTS = {
+  USERS: '/users',
   AUTH: {
     GOOGLE: {
       LOGIN: 'auth/google',
