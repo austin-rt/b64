@@ -4,7 +4,7 @@ import Image from 'next/image';
 const Profile = () => {
   const user = useAppSelector(state => state.UserSlice.user);
 
-  return (
+  return user ? (
     <div>
       <Image
         src={user.avatar}
@@ -28,6 +28,10 @@ const Profile = () => {
           </div>
         ))}
       </div>
+    </div>
+  ) : (
+    <div>
+      <h2>Please sign in</h2>
     </div>
   );
 };
