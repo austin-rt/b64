@@ -26,15 +26,13 @@ export default function Home() {
 
   const handleSaveToProfile = (file: any) => {
     if (file) {
-      console.log(file);
-      // axios.put(`${BASE_URL.API}/${API_ENDPOINTS.USERS}/${user._id}`, file)
+      axios.put(`${BASE_URL.API}/${API_ENDPOINTS.USERS}/${user._id}`, file);
     }
   };
 
   const handleSaveAllToProfile = () => {
     if (files) {
-      // console.log(files);
-      axios.put(`${BASE_URL.API}/${API_ENDPOINTS.USERS}/${user._id}`, files)
+      axios.put(`${BASE_URL.API}/${API_ENDPOINTS.USERS}/${user._id}`, files);
     }
   };
 
