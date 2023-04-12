@@ -1,18 +1,20 @@
 import axios, { AxiosResponse } from 'axios';
 import { API_ENDPOINTS, BASE_URL } from '@/constants/consts';
 import { IUserData } from '@/types/interfaces';
-import { useAppDispatch } from '@/redux/store';
+import { useAppDispatch, useAppSelector } from '@/redux/store';
 import { setAuthenticatedUser } from '@/redux/UserSlice';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 const useAuth = () => {
   const dispatch = useAppDispatch();
+  const user = useAppSelector(state => state.UserSlice.user);
 
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<any>(null);
 
-  const getUser = async () => {
+  const getUser = useCallback(async () => {
     setLoading(true);
+    if (user.name !== '') return;
     try {
       const { data }: AxiosResponse<IUserData> = await axios.get(
         `${BASE_URL.API}/${API_ENDPOINTS.AUTH.LOGIN.SUCCESS}`,
@@ -29,7 +31,7 @@ const useAuth = () => {
       setError(err);
       setLoading(false);
     }
-  };
+  }, [dispatch, user.name]);
 
   return { getUser, loading, error };
 };

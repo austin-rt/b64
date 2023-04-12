@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import useFileReader from '../hooks/useFileReader';
@@ -10,13 +10,19 @@ import axios from 'axios';
 
 export default function Home() {
   const { files, handleFileChange } = useFileReader();
-  const { getUser, loading, error } = useAuth();
   const imageWidth = 75;
   const user = useAppSelector(state => state.UserSlice.user);
+  const { getUser, loading, error } = useAuth();
+  const userRef = useRef(0);
 
   useEffect(() => {
     getUser();
-  }, []);
+  }, [getUser]);
+
+  useEffect(() => {
+    userRef.current!++;
+    console.log(`render`, userRef.current);
+  }, [user]);
 
   const handleCopyClick = (str: string) => {
     if (str) {
