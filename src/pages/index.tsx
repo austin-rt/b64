@@ -24,6 +24,7 @@ export default function Home() {
     }
   };
 
+  // combine into one function with conditional
   const handleSaveToProfile = (file: any) => {
     if (file) {
       axios.put(`${BASE_URL.API}/${API_ENDPOINTS.USERS}/${user._id}`, file);
